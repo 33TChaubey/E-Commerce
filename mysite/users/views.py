@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from users.models import Profile, CusOrders, CartItem
+from users.models import Profile, CusOrders, CartItem, CustomerRatingFeedback
 from users.forms import ProfformEdit, ProfformCreate, UpdateOrder
 from ecom.models import Item
 from django.contrib.auth.decorators import login_required
@@ -100,10 +100,7 @@ def remove_to_cart(request,itemid):
     cart_item.delete()
     return redirect ('users:cart')
 
-from django.shortcuts import render
-from django.http import HttpResponse
 
 
-from django.urls import path
-from . import views
-
+def CusRatFeedView(request,itemid,pc):
+    pass

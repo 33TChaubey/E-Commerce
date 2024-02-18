@@ -49,3 +49,15 @@ class CartItem(models.Model):
     
     def __str__(self):
         return f"{self.quantity} x {self.product.item_name}"
+    
+    
+
+class CustomerRatingFeedback(models.Model):
+    prod_code = models.IntegerField(defaukt=1)
+    ratings = models.FloatField(default=0.0)
+    feedback = models.TextField()
+    username = models.CharField(max_length=255)
+    
+    
+    def __str__(self):
+        return self.username

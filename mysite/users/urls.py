@@ -10,5 +10,6 @@ urlpatterns = [
     path('cart/', views.view_cart,name='cart'),
     path('addtocart/<int:itemid>/',views.add_to_cart,name='addtocart'),
     path('removecart/<int:itemid>/',views.remove_to_cart,name='remove_cart'),
+    path('feedback/<int:itemid>/<int:pc>/', views.CusRatFeedView,name="feedback"),
     
 ]
