@@ -1,0 +1,9 @@
+django.allauth==0.60.0
+bootstrap5
+users
+ecom
+server
+CSS
+JS
+Pillow==10.2.0
+pip-install-collect-staticfiles

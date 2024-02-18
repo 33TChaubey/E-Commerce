@@ -1,0 +1,21 @@
+{% extends "ecom/base.html" %}
+{% block content %}
+<style>
+    /* Center the form horizontally and vertically */
+    .centered-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Set height to 100% of viewport height */
+    }
+</style>
+
+<div class="centered-form">
+    <form action="" method="POST" class="text-center">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Yes Confirm</button>
+    </form>
+</div>
+
+{% endblock %}

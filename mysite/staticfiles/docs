@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'ecom/index.css' %}">
+</head>
+<body>
+
+
+  <section id="home">
+    <div class="home_page ">
+        <div class="home_img ">
+            <img src="https://i.postimg.cc/t403yfn9/home2.jpg" alt="img ">
+        </div>
+        <div class="home_txt ">
+            <p class="collectio ">SUMMER COLLECTION</p>
+            <h2>FALL - WINTER<br>Collection 2023</h2>
+            <div class="home_label ">
+                <p>A specialist label creating luxury essentials. Ethically crafted<br>with an unwavering commitment to exceptional quality.</p>
+            </div>
+            <button><a href="#sellers">SHOP NOW</a><i class='bx bx-right-arrow-alt'></i></button>
+            <div class="home_social_icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-pinterest'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+    <div class="container-fluid cont-box bg-trasparent my-4 p-3" style="position: relative">
+        <div class="row row-top row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+          {% for item in Itemlist %}
+          <div class="col hp">
+            <div class="card h-100 shadow-sm">
+              <a href="{% url 'ecom:detail' item.id %}">
+                <img src="{{ item.item_image }}" class="card-img-top" alt="title"/>
+              </a>
+              <div class="label-top shadow-sm">
+                <a class="text-white" href="#">Apple</a>
+              </div>
+              <div class="card-body">
+                <div class="clearfix mb-3">
+                  <span class="float-start badge rounded-pill bg-success">${{ item.item_price }}</span>
+                  <span class="float-end">
+                    <a :href="acer.affiliateLink" class="small text-muted text-uppercase aff-link">REVIEWS</a>
+                  </span>
+                </div>
+                <h3 class="card-title">
+                  <g-link target="_blank" :to="acer.path">2021 Apple MacBook Pro (14", Apple M1 Pro chip with 8-core CPU and 14-core GPU, 16GB RAM, 512GB SSD) - Sidereal Gray</g-link>
+                </h3>
+                <div class="d-grid gap-2 my-4">
+                  <a href="{% url 'ecom:detail' item.id %}" class="btn btn-warning bold-btn">Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+</body>
+</html>

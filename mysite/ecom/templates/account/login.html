@@ -1,0 +1,76 @@
+{% extends "ecom/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load allauth account %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="hero-wrap hero-bread" style="background-image: url('{% static 'image/bg_6.jpg' %}');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 text-center">
+                    <h1 class="mb-0" style="color: rgb(255, 255, 255);">Login Page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container mt-5 text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body align-items-center justify-content-center">
+                        <h1 class="card-title text-center mb-4">{% trans "Sign In" %}</h1>
+                        <form method="post" action="{% url 'account_login' %}" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            {% if redirect_field_value %}
+                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+                            <div class="form-group text-center">
+                                <label for="id_login">{{ _('Username or Email') }}: </label><br>
+                                {{ form.login }}
+                                <div class="invalid-feedback">
+                                    {{ form.login.errors }}
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <label for="id_password">{{ _('Password') }}: </label><br>
+                                {{ form.password }}
+                                <div class="invalid-feedback">
+                                    {{ form.password.errors }}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">{% trans "Sign In" %}</button>
+                        </form>
+                        <div class="mt-3 text-center">
+                            <p class="mb-0">{% blocktrans %}If you have not created an account yet, then please
+                                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+                            <p class="mb-0"><a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></p>
+                        </div>
+                    </div>
+                </div>
+                {% if SOCIALACCOUNT_ENABLED %}
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+
+{% endblock content %}

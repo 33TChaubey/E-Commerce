@@ -1,0 +1,21 @@
+{% extends "ecom/base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{ prof.id }}
+    <img src="{{ prof.image.url }}" alt="" height="100px" width="100px">
+    {{ user.first_name }}
+    {{ user.last_name }}
+    {{ prof.location }}
+    {{ prof.user_type }}
+    <a href="{% url 'profformedit' prof.id %}"><button>Edit</button></a>
+</body>
+</html>
+{% endblock %}
