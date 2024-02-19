@@ -40,6 +40,8 @@
 					{% elif user.is_authenticated %}
 						<p><a href="{% url 'users:orders' item.id item.prod_code user.username %}" class="btn btn-black py-3 px-3 mr-2">Order</a></p>
 						<p><a href="{% url 'users:addtocart' item.id %}" class="btn btn-black py-3 px-3">Add to Cart</a></p>
+						<p><a href="{% url 'users:feedback' item.id item.prod_code %}" class="btn btn-black py-3 px-3">Add Feedback</a></p>
+
 					{% else %}
 						<p><a href="{% url 'ecom:index' %}" class="btn btn-black py-3 px-3">Back</a></p>
 					{% endif %}
@@ -195,7 +197,45 @@
 	
 	{% endfor %}
 	{% endif %}
+	{% if user.profile.user_type == 'saler' or user.profile.user_type == 'cust' or user.profile.user_type == 'admin' %}
+
+{% for obj in crf %}
+
+<div class="card mb-3 text-center " style="width: 90%; margin-left:80px;">
+	<div class="card-body">
+	  <div class="d-flex flex-start">
+		<img class="rounded-circle shadow-1-strong me-3"
+		  src="{{ user.prof.image.url }}" alt="" width="40"
+		  height="40" />
+		<div class="w-100">
+		  <div class="d-flex justify-content-between align-items-center mb-3">
+			<h6 class="text-primary fw-bold mb-0">
+			  {{ user.first_name }} {{ user.last_name }}
+			  <span class="text-dark ms-2">{{ obj.feedback }}</span>
+			</h6>
+			<p class="mb-0">Ratings:- {{ obj.ratings }}</p>
+		  </div>
+		  <div class="d-flex justify-content-between align-items-center">
+			<p class="small mb-0" style="color: #aaa;">
+			  <a href="#!" class="link-grey">Remove</a> •
+			  <a href="#!" class="link-grey">Edit</a> 
+			</p>
+			<div class="d-flex flex-row">
+			  <i class="fas fa-star text-warning me-2"></i>
+			  <i class="far fa-check-circle" style="color: #aaa;"></i>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+{% endfor %}
+
+{% endif %}
 	{% endif %}
+
+
 	
 
 	<section class="ftco-section bg-light">

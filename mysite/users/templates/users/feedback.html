@@ -1,10 +1,37 @@
-{% extends "food/base.html" %}
-
+{% extends "ecom/base.html" %}
+{% load static %}
 {% block content %}
-  <form action="" method="POST">
-    {% csrf_token %}
-      {{ form }}
-    <button type="submit" >Submit</button>
-    </form>
+<div class="hero-wrap hero-bread" style="background-image: url('{% static 'image/bg_6.jpg' %}');">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9  text-center">
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
+          <h1 class="mb-0 bread">Add Feedback</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4">
+
+  </div>
+  <div class="card mx-auto" style="max-width: 400px;">
+    <div class="card-body">
+        <h5 class="card-title text-center">Feedback Form</h5>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="ratings">Ratings</label>
+                {{ form.ratings }}
+            </div>
+            <div class="form-group">
+                <label for="feedback">Feedback</label>
+                {{ form.feedback }}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+</div>
+
 
 {% endblock  %}

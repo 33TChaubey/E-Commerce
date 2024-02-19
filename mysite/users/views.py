@@ -110,7 +110,7 @@ def CusRatFeedView(request,itemid,pc):
         form.instance.username = request.user.username
         if form.is_valid():
             form.save()
-            return redirect ('food:detail', item_id=itemid)
+            return redirect ('ecom:detail', item_id=itemid)
     context = {
         'form':form
     }
