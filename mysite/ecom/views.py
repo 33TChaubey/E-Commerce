@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Item, Category, History
 from ecom.forms import ItemForm
 from django.contrib import messages
-from users.models import CusOrders
+from users.models import CusOrders,CustomerRatingFeedback
 from django.contrib.auth.decorators import login_required
 
 
@@ -47,6 +47,10 @@ def details(request,item_id):
     )
     
     
+    crf = CustomerRatingFeedback.objects.filter(
+        prod_code = item.prod_code
+    )
+    
     if request.user.profile.user_type == 'saler' or request.user.profile.user_type == 'admin':
         oco = CusOrders.objects.filter(
             prod_code = item.prod_code
@@ -62,7 +66,8 @@ def details(request,item_id):
         'item':item,
         'oco':oco,
         'hist':hist,
-        'items':items
+        'items':items,
+        'crf':crf,
         
     }
     return render (request, 'ecom/detail.html', context)
