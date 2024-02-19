@@ -53,7 +53,7 @@ class CartItem(models.Model):
     
 
 class CustomerRatingFeedback(models.Model):
-    prod_code = models.IntegerField(defaukt=1)
+    prod_code = models.IntegerField(default=1)
     ratings = models.FloatField(default=0.0)
     feedback = models.TextField()
     username = models.CharField(max_length=255)
