@@ -67,7 +67,7 @@ def details(request,item_id):
         'oco':oco,
         'hist':hist,
         'items':items,
-        'crf':crf,
+        'crf':crf
         
     }
     return render (request, 'ecom/detail.html', context)
