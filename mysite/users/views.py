@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from users.models import Profile, CusOrders, CartItem, CustomerRatingFeedback
-from users.forms import ProfformEdit, ProfformCreate, UpdateOrder
+from users.forms import ProfformEdit, ProfformCreate, UpdateOrder, Feedbackform
 from ecom.models import Item
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -103,4 +103,16 @@ def remove_to_cart(request,itemid):
 
 
 def CusRatFeedView(request,itemid,pc):
-    pass
+    form = Feedbackform(request.POST or None)
+    
+    if request.method == 'POST':
+        form.instance.prod_code = pc
+        form.instance.username = request.user.username
+        if form.is_valid():
+            form.save()
+            return redirect ('food:detail', item_id=itemid)
+    context = {
+        'form':form
+    }
+    
+    return render(request, 'users/feedback.html',context)

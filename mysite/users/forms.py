@@ -1,4 +1,4 @@
-from users.models import Profile, CusOrders
+from users.models import Profile, CusOrders, CustomerRatingFeedback
 from django.contrib.auth.models import User
 from django import forms
 
@@ -18,3 +18,9 @@ class UpdateOrder(forms.ModelForm):
     class Meta:
         model = CusOrders
         fields = ['quantity']
+        
+
+class Feedbackform(forms.ModelForm):
+    class Meta:
+        model = CustomerRatingFeedback
+        fields = ['ratings', 'feedback']
